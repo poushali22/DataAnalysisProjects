@@ -1,6 +1,7 @@
 -- Cleaning data in SQL queries
 Use [Portfolio Project]
 Select * from NashvilleHousing
+
 -- Standardize Date Format
 Select Saledate, Convert(date,SaleDate)
 From NashvilleHousing
@@ -18,6 +19,7 @@ Select SaleDateConverted
 From NashvilleHousing;
 
 -- Populate Property Address data
+
 Select *
 From NashvilleHousing
 Where PropertyAddress is null
@@ -25,6 +27,7 @@ Where PropertyAddress is null
 Select *
 From NashvilleHousing
 order by ParcelID 
+
 -- we can see same parcel id has the same property address so if any property address has null value then we can refer to the address having the same panelid
 
 Select a.ParcelID,a.PropertyAddress,b.ParcelID,b.PropertyAddress, ISNULL(a.PropertyAddress,b.PropertyAddress)
@@ -43,6 +46,7 @@ Join NashvilleHousing b
 Where a.PropertyAddress is null
 
 -- Breaking out Property Address into Individual Columns (Address, City, State)
+
 Select PropertyAddress
 From NashvilleHousing
 order by ParcelID
@@ -70,6 +74,7 @@ Order by ParcelID
 
 
 -- Breaking out Owner Address into Individual Columns (Address, City, State)
+
 Select OwnerAddress
 From NashvilleHousing
 
@@ -102,6 +107,7 @@ Select *
 From NashvilleHousing
 
 --Change Y and N to Yes and No in "Sold as vacant" Field
+
 Select Distinct(SoldAsVacant),Count(SoldAsVacant)
 From NashvilleHousing
 Group by SoldAsVacant
@@ -126,6 +132,7 @@ Group by SoldAsVacant
 
 
 -- Remove Duplicates
+
 With RowNumCTE As(
 Select *,
 	ROW_NUMBER() Over(
